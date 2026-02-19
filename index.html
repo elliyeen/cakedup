@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cake'd Up — Fresh Personal Cakes</title>
+  <meta name="description" content="Fresh personal cakes made to order. Pre-order tonight, pick up at school tomorrow." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tiffany:       #0ABAB5;
+      --tiffany-dark:  #089490;
+      --tiffany-light: #E0F7F6;
+      --tiffany-pale:  #F0FAFA;
+      --silver:        #B0B8C1;
+      --dark:          #1F2937;
+      --mid:           #6B7280;
+      --white:         #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAVBAR ──────────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid #F3F4F6;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      color: var(--tiffany);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--dark); }
+
+    .nav-order-btn {
+      background: var(--dark) !important;
+      color: var(--white) !important;
+      padding: 10px 22px !important;
+      border-radius: 8px !important;
+      letter-spacing: 0.05em !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-order-btn:hover {
+      background: var(--tiffany) !important;
+      color: var(--white) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ────────────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 88vh;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -140px;
+      right: -140px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: var(--tiffany-light);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: var(--tiffany-pale);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--tiffany-light);
+      color: var(--tiffany-dark);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 999px;
+      margin-bottom: 32px;
+      border: 1px solid rgba(10,186,181,0.25);
+    }
+
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(3.8rem, 10vw, 7rem);
+      color: var(--dark);
+      line-height: 1.05;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 .accent { color: var(--tiffany); }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--mid);
+      max-width: 400px;
+      margin: 24px auto 44px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 16px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--tiffany);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: var(--dark);
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 2px solid #E5E7EB;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--tiffany);
+      color: var(--tiffany);
+    }
+
+    .hero-price-strip {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--tiffany-pale);
+      border-radius: 999px;
+      padding: 12px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--mid);
+    }
+
+    .hero-price-strip strong { color: var(--tiffany-dark); }
+    .hero-price-strip .sep { color: var(--silver); font-weight: 400; }
+
+    /* ── DIVIDER ─────────────────────────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #E5E7EB 30%, #E5E7EB 70%, transparent);
+      margin: 0 48px;
+    }
+
+    /* ── SHARED SECTION ──────────────────────────────────────────────────────── */
+    section { padding: 96px 48px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .container-wide { max-width: 1120px; margin: 0 auto; }
+
+    .section-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tiffany);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--mid);
+      font-weight: 600;
+    }
+
+    .section-header { margin-bottom: 52px; }
+
+    /* ── MENU ────────────────────────────────────────────────────────────────── */
+    .menu { background: var(--white); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid #F3F4F6;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(10,186,181,0.13);
+      border-color: var(--tiffany-light);
+    }
+
+    .menu-card-accent {
+      height: 5px;
+      background: var(--tiffany-light);
+    }
+
+    .menu-card.featured .menu-card-accent {
+      background: var(--tiffany);
+    }
+
+    .menu-card-body {
+      padding: 28px 24px 24px;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tiffany);
+      background: var(--tiffany-light);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .menu-card.featured .menu-tag {
+      background: rgba(255,255,255,0.25);
+      color: var(--white);
+    }
+
+    .menu-name {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .menu-price {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.4rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .menu-desc {
+      font-size: 0.87rem;
+      color: var(--mid);
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    .menu-card-cta {
+      display: block;
+      text-align: center;
+      background: var(--tiffany-pale);
+      color: var(--tiffany-dark);
+      font-weight: 800;
+      font-size: 0.84rem;
+      padding: 11px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .menu-card-cta:hover {
+      background: var(--tiffany);
+      color: var(--white);
+    }
+
+    /* Featured card overrides */
+    .menu-card.featured {
+      background: var(--tiffany);
+      border-color: var(--tiffany);
+    }
+
+    .menu-card.featured .menu-name,
+    .menu-card.featured .menu-price { color: var(--white); }
+
+    .menu-card.featured .menu-desc { color: rgba(255,255,255,0.82); }
+
+    .menu-card.featured .menu-card-cta {
+      background: var(--white);
+      color: var(--tiffany-dark);
+    }
+
+    .menu-card.featured .menu-card-cta:hover {
+      background: rgba(255,255,255,0.85);
+    }
+
+    /* ── FLAVORS ─────────────────────────────────────────────────────────────── */
+    .flavors-row {
+      margin-top: 36px;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .flavors-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .flavors-chips {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .flavor-chip {
+      background: var(--white);
+      border: 1.5px solid var(--tiffany-light);
+      color: var(--dark);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 999px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .flavor-chip:hover {
+      background: var(--tiffany);
+      border-color: var(--tiffany);
+      color: var(--white);
+    }
+
+    .menu-footer {
+      margin-top: 32px;
+      padding: 18px 28px;
+      background: var(--tiffany-pale);
+      border-radius: 10px;
+      border-left: 4px solid var(--tiffany);
+      font-size: 0.93rem;
+      color: var(--mid);
+      font-weight: 600;
+    }
+
+    /* ── HOW IT WORKS ────────────────────────────────────────────────────────── */
+    .how { background: var(--tiffany-pale); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      position: relative;
+    }
+
+    /* Connecting line */
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: calc(16.7% + 24px);
+      right: calc(16.7% + 24px);
+      height: 2px;
+      background: linear-gradient(to right, var(--tiffany-light), var(--tiffany), var(--tiffany-light));
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 28px 0;
+    }
+
+    .step-num {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--tiffany-light);
+      color: var(--tiffany);
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+      box-shadow: 0 0 0 8px var(--tiffany-pale);
+    }
+
+    .step:hover .step-num {
+      background: var(--tiffany);
+      border-color: var(--tiffany);
+      color: var(--white);
+    }
+
+    .step h3 {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ── ORDER SECTION ───────────────────────────────────────────────────────── */
+    .order-section { background: var(--white); }
+
+    .form-embed-wrapper {
+      margin-top: 40px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid #E5E7EB;
+      background: var(--white);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      /* Let the iframe dictate its own height — no clipping */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .form-embed-wrapper iframe {
+      display: block;
+      width: 100%;
+      border: none;
+      /* Height set inline by Google — do not override, let it breathe */
+    }
+
+    .form-placeholder {
+      padding: 80px 24px;
+      text-align: center;
+      color: var(--mid);
+    }
+
+    .form-placeholder p { font-size: 0.95rem; margin-bottom: 10px; }
+
+    .form-placeholder code {
+      background: var(--tiffany-pale);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--tiffany-dark);
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────────────────────────── */
+    .contact { background: var(--tiffany-pale); text-align: center; }
+
+    .contact-card {
+      display: inline-block;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 36px 52px;
+      margin-top: 36px;
+      border: 1.5px solid #E5E7EB;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+
+    .contact-card p {
+      font-size: 1rem;
+      color: var(--mid);
+      font-weight: 600;
+      line-height: 1.7;
+    }
+
+    .contact-card strong { color: var(--dark); }
+
+    /* ── ABOUT ───────────────────────────────────────────────────────────────── */
+    .about { background: var(--white); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-text .section-label { margin-bottom: 12px; }
+
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--mid);
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .about-text .about-closing {
+      font-size: 1.05rem;
+      color: var(--dark);
+      font-weight: 800;
+      margin-bottom: 0;
+    }
+
+    .about-photo {
+      width: 280px;
+      height: 280px;
+      border-radius: 24px;
+      object-fit: cover;
+      background: var(--tiffany-pale);
+      border: 2px solid var(--tiffany-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+      padding: 36px 48px;
+    }
+
+    .footer-logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      color: var(--tiffany);
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: var(--silver);
+      font-weight: 600;
+    }
+
+    /* ── RESPONSIVE: LARGE TABLET (max-width: 1024px) ───────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 32px; }
+      section { padding: 80px 32px; }
+      .divider { margin: 0 32px; }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-inner { gap: 48px; }
+    }
+
+    /* ── RESPONSIVE: TABLET / LARGE PHONE (max-width: 768px) ────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; height: 64px; }
+      /* Hide text links — keep only logo + Pre-Order button */
+      .nav-links li:not(:last-child) { display: none; }
+
+      section { padding: 64px 20px; }
+      .divider { margin: 0 20px; }
+
+      .hero { padding: 64px 20px; min-height: 80vh; }
+      .hero-tagline { font-size: 1rem; margin: 20px auto 36px; }
+
+      /* Menu: 2 columns on tablet */
+      .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .menu-card-body { padding: 22px 18px 18px; }
+
+      /* Flavors: center-wrap already handled, just reduce gap */
+      .flavors-chips { gap: 8px; }
+      .flavor-chip { font-size: 0.82rem; padding: 7px 16px; }
+
+      /* Steps: stack vertically */
+      .steps { grid-template-columns: 1fr; gap: 36px; }
+      .steps::before { display: none; }
+      .step { padding: 0 16px; }
+
+      /* About: stack vertically */
+      .about-inner { grid-template-columns: 1fr; gap: 36px; }
+      .about-photo { width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; }
+
+      /* Contact card: full width */
+      .contact-card { padding: 28px 20px; width: 100%; max-width: 480px; }
+
+      footer { padding: 28px 20px; }
+    }
+
+    /* ── RESPONSIVE: SMALL PHONE (max-width: 480px) ──────────────────────────── */
+    @media (max-width: 480px) {
+      nav { height: 58px; }
+
+      section { padding: 52px 16px; }
+      .divider { margin: 0 16px; }
+
+      /* Hero */
+      .hero { padding: 52px 16px; min-height: 70vh; }
+      .hero::before, .hero::after { display: none; }
+      .hero-badge { font-size: 0.65rem; padding: 5px 14px; margin-bottom: 20px; }
+      .hero-tagline { font-size: 0.95rem; margin: 16px auto 28px; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 24px; }
+      .btn-primary, .btn-secondary { justify-content: center; width: 100%; padding: 15px 24px; }
+
+      /* Price strip: stack vertically, hide separators */
+      .hero-price-strip {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 16px 20px;
+        border-radius: 16px;
+        font-size: 0.88rem;
+      }
+      .hero-price-strip .sep { display: none; }
+
+      /* Section headers */
+      .section-header { margin-bottom: 32px; }
+
+      /* Menu: single column on small phones */
+      .menu-grid { grid-template-columns: 1fr; gap: 12px; }
+
+      /* Flavors */
+      .flavors-chips { gap: 8px; }
+      .flavor-chip { font-size: 0.8rem; padding: 6px 14px; }
+
+      /* Steps */
+      .step-num { width: 64px; height: 64px; font-size: 1.6rem; }
+
+      /* Form iframe wrapper */
+      .form-embed-wrapper { border-radius: 10px; }
+
+      /* Contact */
+      .contact-card { padding: 20px 16px; }
+
+      /* About */
+      .about-photo { width: 160px; height: 160px; }
+
+      footer { padding: 24px 16px; }
+      .footer-logo { font-size: 1.2rem; }
+    }
+
+    /* ── RESPONSIVE: TINY PHONE (max-width: 360px) ───────────────────────────── */
+    @media (max-width: 360px) {
+      .hero { padding: 44px 14px; }
+      .nav-logo { font-size: 1.2rem; }
+      section { padding: 44px 14px; }
+      .menu-price { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────────────────── -->
+<nav>
+  <a href="#" class="nav-logo">Cake'd Up</a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#order" class="nav-order-btn">Pre-Order</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Made to order · Delivered at school</div>
+    <h1>Cake'd <span class="accent">Up</span></h1>
+    <p class="hero-tagline">Fresh personal cakes baked just for you.<br>Order tonight, pick up at school tomorrow.</p>
+    <div class="hero-actions">
+      <a href="#order" class="btn-primary">Pre-Order Now &rarr;</a>
+      <a href="#menu" class="btn-secondary">See the Menu</a>
+    </div>
+    <div class="hero-price-strip">
+      <strong>$3</strong> <span class="sep">·</span> 1 cake
+      <span class="sep">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <strong>$5</strong> <span class="sep">·</span> for two
+      <span class="sep">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <strong>$12</strong> <span class="sep">·</span> Birthday Pack
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── MENU ─────────────────────────────────────────────────────────────────── -->
+<section class="menu" id="menu">
+  <div class="container-wide">
+    <div class="section-header">
+      <span class="section-label">Menu</span>
+      <h2 class="section-title">What's on the Menu</h2>
+      <p class="section-sub">Baked fresh, made to order. Every cake is personal — just for you.</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <div class="menu-card-accent"></div>
+        <div class="menu-card-body">
+          <span class="menu-tag">Classic</span>
+          <div class="menu-name">1 Cake</div>
+          <div class="menu-price">$3</div>
+          <div class="menu-desc">Fresh, personal, just for you. The perfect treat any day of the week.</div>
+          <a href="#order" class="menu-card-cta">Order Now &rarr;</a>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-accent"></div>
+        <div class="menu-card-body">
+          <span class="menu-tag">Better Deal</span>
+          <div class="menu-name">2 Cakes</div>
+          <div class="menu-price">$5</div>
+          <div class="menu-desc">Share with a friend or save one for later. The crowd favorite.</div>
+          <a href="#order" class="menu-card-cta">Order Now &rarr;</a>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-accent"></div>
+        <div class="menu-card-body">
+          <span class="menu-tag">Best Value</span>
+          <div class="menu-name">5-Pack</div>
+          <div class="menu-price">$10</div>
+          <div class="menu-desc">The whole squad eats. Five cakes, one order, zero regrets.</div>
+          <a href="#order" class="menu-card-cta">Order Now &rarr;</a>
+        </div>
+      </div>
+
+      <div class="menu-card featured">
+        <div class="menu-card-accent"></div>
+        <div class="menu-card-body">
+          <span class="menu-tag">Most Popular</span>
+          <div class="menu-name">Birthday Pack</div>
+          <div class="menu-price">$12–$15</div>
+          <div class="menu-desc">5–6 cakes, beautifully packaged with a personal note. The best gift you can give.</div>
+          <a href="#order" class="menu-card-cta">Order Now &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flavors-row">
+      <span class="flavors-label">Available Flavors</span>
+      <div class="flavors-chips">
+        <div class="flavor-chip">Carrot Cake</div>
+        <div class="flavor-chip">Berry Explosion</div>
+        <div class="flavor-chip">Cookies &amp; Cream</div>
+        <div class="flavor-chip">Texas Vanilla Bean</div>
+      </div>
+    </div>
+
+    <p class="menu-footer">
+      All cakes are baked fresh and made to order. Pre-order by the night before — I'll bring them to school the next day.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── HOW IT WORKS ──────────────────────────────────────────────────────────── -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-header" style="text-align: center;">
+      <span class="section-label" style="display: block; text-align: center;">How It Works</span>
+      <h2 class="section-title">3 Easy Steps</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Fill Out the Form</h3>
+        <p>Select your cakes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Confirm + Pay</h3>
+        <p></p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Pick Up at School</h3>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ORDER FORM ───────────────────────────────────────────────────────────── -->
+<section class="order-section" id="order">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Order</span>
+      <h2 class="section-title">Place Your Pre-Order</h2>
+      <p class="section-sub">Fill out the form below — it takes less than 2 minutes.</p>
+    </div>
+
+    <div class="form-embed-wrapper">
+      <!--
+        REPLACE THIS PLACEHOLDER with your Google Form embed code.
+
+        How to get it:
+        1. Open your Google Form
+        2. Click Send → Embed icon (<>)
+        3. Copy the <iframe ...> code
+        4. Paste it here, replacing the div.form-placeholder below
+
+        Example:
+        <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+                width="100%" height="680" frameborder="0">Loading…</iframe>
+      -->
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe9lgh8xYclT8E1OAS1Qxx6CT4WkpZjGHrtICl5RnGMcNwDcQ/viewform?embedded=true" width="100%" height="2637" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CONTACT ──────────────────────────────────────────────────────────────── -->
+<section class="contact" id="contact">
+  <div class="container">
+    <span class="section-label" style="text-align: center;">Contact</span>
+    <h2 class="section-title" style="text-align: center;">Get in Touch</h2>
+    <p style="color: var(--mid); font-weight: 600; text-align: center;">Questions or special requests? Reach out and I'll get back to you.</p>
+    <div style="text-align: center;">
+      <div class="contact-card">
+        <p><strong>Orders close at 8pm</strong> each night for next-day school pickup.</p>
+        <p>DM me on Instagram with any questions — I'll confirm your order fast. Pay via Cash App or cash.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ────────────────────────────────────────────────────────────────── -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text">
+        <span class="section-label">About</span>
+        <h2 class="section-title">Hi, I'm AT</h2>
+        <p>
+          Welcome to Cake'd Up — my small business built on big flavors and an even bigger love for baking.
+        </p>
+        <p>
+          I make fresh personal cakes by hand and bring them to school. Every cake is made to order, just for you. Whether you want one for yourself or a Birthday Pack for your best friend, I've got you.
+        </p>
+        <p class="about-closing">Order tonight. Pick up tomorrow.</p>
+      </div>
+      <!-- Replace this with: <img class="about-photo" src="photos/at.jpg" alt="AT" /> -->
+      <div class="about-photo"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">Cake'd Up</div>
+  <p class="footer-text">&copy; Cake'd Up by AT &nbsp;&middot;&nbsp; Made with love and a lot of butter</p>
+</footer>
+
+</body>
+</html>
